@@ -25,7 +25,7 @@ const commands: Command[] = [
     ],
   },
   {
-    cmd: 'contact --email',
+    cmd: 'contact --email[max5010cs@gmail.com]',
     label: 'Email',
     url: 'max5010cs@gmail.com',
     logs: [
@@ -72,6 +72,9 @@ export default function Contact() {
   const [, setSelectedUrl] = useState('')
   const [message, setMessage] = useState('')
   const [sending, setSending] = useState(false)
+
+  const TELEGRAM_BOT_TOKEN = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN
+  const TELEGRAM_CHAT_ID = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID
 
   const typeLine = (line: string, speed = 20 + Math.random() * 40) =>
     new Promise<void>((resolve) => {
@@ -147,17 +150,21 @@ export default function Contact() {
       await sleep(60)
     }
 
-    // Send to Telegram Bot
+    // Send to Telegram Bot using env vars
     try {
-      await fetch('https://api.telegram.org/bot8467535444:AAGvE548KPMTCy92GklYEt1CmUrgAPF2_eU/sendMessage', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: '6795755265',
-          text: `📬 New terminal message:\n\n${message}`,
-        }),
-      })
-      await typeLine('[OK] Message successfully sent!')
+      if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+        await typeLine('[ERR] Telegram credentials not set.')
+      } else {
+        await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: `📬 New terminal message:\n\n${message}`,
+          }),
+        })
+        await typeLine('[OK] Message successfully sent!')
+      }
     } catch {
       await typeLine('[ERR] Failed to send message.')
     }
@@ -236,7 +243,7 @@ export default function Contact() {
       </motion.div>
     </section>
   )
-}                                                  
+}
 
 
 
