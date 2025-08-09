@@ -56,13 +56,13 @@ const realProjects: Project[] = [
     techStack: ['React', 'Vite', 'Node.js', 'OpenRouter', 'PDF Export']
   },
   {
-    image: '/projects/lillocker.png',
-    title: 'LockLoop – Auto Linux Screen Locker (Python)',
+    image: '/projects/usrlinks.png',
+    title: 'USRLINKS OSINT Username Hunter',
     description:
-      'LockLoop is a simple Python tool that automatically locks your Linux screen at custom intervals and re-locks after each unlock. It uses xflock4 and is ideal for Kali Linux demos or scripting practice.',
-    demo: 'https://github.com/max5010cs/0x0ff5ec/op3',
-    github: 'https://github.com/max5010cs/0x0ff5ec/op3',
-    techStack: ['Python', 'Bash', 'xflock4', 'TTY']
+          'USRLINKS is a fast, modern OSINT tool for searching usernames across 30+ social platforms, providing deep reconnaissance and exportable reports. It features a React frontend and a Go backend, making it ideal for investigators, security professionals, and anyone interested in tracking digital footprints. The project supports feedback, platform customization, and integrates with Telegram for notifications.',
+    demo: 'https://usrlinks.vercel.app',
+    github: 'https://github.com/max5010cs/usrlinks/tree/web-version/webusrlinks',
+    techStack: ['Go (Fiber)', 'React (TypeScript)', 'Material-UI', 'Axios', 'jsPDF', 'jsPDF-Autotable', 'FileSaver.js', 'Framer Motion', 'goquery', 'Telegram Bot API', 'dotenv', 'JSON/CSV export']
   },
 
   {
